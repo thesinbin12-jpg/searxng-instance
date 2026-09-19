@@ -1,0 +1,69 @@
+# SearXNG Settings for Render Deployment
+# JSON API enabled for programmatic access
+# HTML also enabled for web UI
+
+use_default_settings: true
+
+general:
+  debug: false
+  instance_name: "pi-searxng"
+  contact_url: "https://github.com/thesinbin12-jpg/searxng-instance"
+  enable_metrics: false
+
+server:
+  secret_key: "CHANGE_ME_GENERATE_WITH_OPENSSL_RAND_HEX_32"
+  base_url: https://searxng-thesinbin12.onrender.com
+  limiter: true
+  image_proxy: true
+  method: POST
+  default_locale: "en"
+  port: 8080
+  bind_address: "0.0.0.0"
+
+search:
+  formats:
+    - html
+    - json
+  categories:
+    - general
+    - images
+    - videos
+    - news
+  safe_search: 1
+  autocomplete: "google"
+  default_lang: "en"
+
+redis:
+  enabled: false
+
+# Engines - use a curated subset for performance on free tier
+engines:
+  - name: google
+    engine: google
+    shortcut: g
+    use_http_post: true
+    timeout: 5.0
+  - name: bing
+    engine: bing
+    shortcut: b
+    timeout: 5.0
+  - name: duckduckgo
+    engine: duckduckgo
+    shortcut: d
+    timeout: 5.0
+  - name: brave
+    engine: brave
+    shortcut: br
+    timeout: 5.0
+  - name: startpage
+    engine: startpage
+    shortcut: sp
+    timeout: 5.0
+  - name: qwant
+    engine: qwant
+    shortcut: qw
+    timeout: 5.0
+  - name: searxng
+    engine: searxng
+    shortcut: sx
+    timeout: 5.0
