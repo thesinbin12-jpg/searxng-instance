@@ -16,7 +16,7 @@ if [ -n "$RENDER_EXTERNAL_URL" ]; then
 fi
 
 # Use PORT from Render (default 10000), fallback to 8080
-export PORT=${PORT:-8080}
+export PORT=${PORT:-10000}
 echo "Starting SearXNG on port $PORT"
 
 # Update settings.yml port
@@ -26,7 +26,7 @@ sed -i "s|port: 8080|port: $PORT|g" /etc/searxng/settings.yml
 (
     sleep 30  # Wait for server to start
     while true; do
-        if curl -f -s -m 5 "http://localhost:$PORT/healthz" > /dev/null 2>&1; then
+        if curl -f -s -m 5 "http://localhost:$PORT/health" > /dev/null 2>&1; then
             echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) [self-ping] OK"
         else
             echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) [self-ping] FAILED"
